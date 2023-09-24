@@ -20,7 +20,7 @@ class UserSectorController extends Controller
         foreach ($sectors as $sector) {
             $this->saveUsersSectors($userId, $sector);
         }
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Form data saved successfully!');
 
     }
 
@@ -55,7 +55,7 @@ class UserSectorController extends Controller
             $this->saveUsersSectors($userId, $sector);
         }
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Form data updated successfully!');
     }
 
     /**

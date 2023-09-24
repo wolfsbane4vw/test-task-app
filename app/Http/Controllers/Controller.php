@@ -5,10 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Sector;
 use App\Models\UsersDetail;
 use App\Models\UsersSector;
-use App\View\Components\SectorForm;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -26,25 +24,20 @@ class Controller extends BaseController
             ->orderBy('sector_id', 'asc')
             ->get();
 
-        //TODO: change to resource
         $this->renameAttributesInCollection($sectors);
 
-        $usersDetails = UsersDetail::query()
-            ->where('user_session_id', '=', session()->getId())
-            ->first();
+        $usersDetails = $this->getUsersDetails();
 
         $is_edit_mode = false;
-
         $dataNames = ['sectors'];
+
         if ($usersDetails !== null){
-            $checkedSectors = UsersSector::query()->where('user_id', '=', $usersDetails['id'])->get()->pluck('sector_id')->toArray();
+            $checkedSectors = $this->getCheckedSectors($usersDetails['id']);
             $is_edit_mode = true;
-            if ($checkedSectors !== null){
+            if ($checkedSectors){
                 $dataNames[] = 'checkedSectors';
             }
         }
-
-
 
         return view('components.sector-form', compact($dataNames), ['usersDetails' => $usersDetails, 'is_edit_mode' => $is_edit_mode]);
     }
@@ -66,5 +59,24 @@ class Controller extends BaseController
             }
             return $item;
         });
+    }
+
+    /**
+     * @param $id
+     * @return array
+     */
+    public function getCheckedSectors($id): array
+    {
+        return UsersSector::query()->where('user_id', '=', $id)->get()->pluck('sector_id')->toArray();
+    }
+
+    /**
+     * @return object|null
+     */
+    public function getUsersDetails(): null|object
+    {
+        return UsersDetail::query()
+            ->where('user_session_id', '=', session()->getId())
+            ->first();
     }
 }

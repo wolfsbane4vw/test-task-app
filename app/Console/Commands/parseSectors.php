@@ -31,6 +31,7 @@ class parseSectors extends Command
 
     /**
      * Execute the console command.
+     * @throws \Exception
      */
     public function handle()
     {
@@ -39,8 +40,7 @@ class parseSectors extends Command
         $filePath = base_path($fileName);
 
         if (!File::exists($filePath)) {
-            //TODO: create error message
-            return;
+            throw new \Exception('File '. $fileName .' not found at - ' . $filePath);
         }
 
         $htmlContent = File::get($filePath);
@@ -60,7 +60,7 @@ class parseSectors extends Command
 
             $encodedString = htmlentities($sectorNameWithWhitespaces, null, 'utf-8');
             $encodedStringUnicodeReplacedWithWhitespaces = str_replace("&nbsp;", " ", $encodedString);
-            $decodedSectorName = html_entity_decode($encodedStringUnicodeReplacedWithWhitespaces);
+            $decodedSectorName = html_entity_decode($encodedStringUnicodeReplacedWithWhitespaces,null, 'utf-8');
 
             $sectorName = preg_replace('/^[\s]+/', '', $decodedSectorName);
             $whiteSpaceCount = strlen($sectorNameWithWhitespaces) - strlen($sectorName);
