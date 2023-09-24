@@ -1,0 +1,20 @@
+{
+  "resources/css/app.css": {
+    "file": "assets/app-dce60da3.css",
+    "isEntry": true,
+    "src": "resources/css/app.css"
+  },
+  "resources/js/app.css": {
+    "file": "assets/app-cfbf391c.css",
+    "src": "resources/js/app.css"
+  },
+  "resources/js/app.js": {
+    "css": [
+      "assets/app-cfbf391c.css",
+      "assets/app-dce60da3.css"
+    ],
+    "file": "assets/app-62ded131.js",
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  }
+}

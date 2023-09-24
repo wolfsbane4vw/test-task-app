@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.form-item {
+    margin-top: 10px;
+}
+
+.select-container{
+    max-height: calc(5lh + 0.25rem + 0.15rem);
+    overflow-y: auto;
+}
+
+.btn {
+    @apply font-bold py-2 px-4 rounded;
+}
+
+.btn-blue {
+    @apply bg-blue-500 text-white;
+}
+.btn-blue:hover {
+    @apply bg-blue-700;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.select, .select-tree {
+    border: 1px solid rgb(128, 128, 128);
+    width: fit-content;
+    overflow: hidden;
+    list-style-type: none;
+    margin: 10px;
+}
+
+.select .group-label {
+    background-color: white;
+}
+
+.select .option-label {
+    background-color: white;
+    display: block;
+}
+
+.select .hidden-checkbox {
+    display: none;
+}
+
+.select .hidden-checkbox:checked + .option-label{
+    background-color: lightblue;
+}
+
+.select-tree .group-children {
+    list-style-type: none;
+    padding-left: 20px;
+}
+.select-tree .option-label {
+    padding-left: 5px;
+}
+
+.select-list .level-0 {
+    padding-left: 10px;
+}
+
+.select-list .level-1 {
+    padding-left: 20px;
+}
+
+.select-list .level-2 {
+    padding-left: 30px;
+}
