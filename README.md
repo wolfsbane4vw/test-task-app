@@ -11,12 +11,12 @@ Laravel sail needed a linux distro to be defined in Docker Desktop for windows. 
 
     From [Laravel site](https://laravel.com/docs/10.x/sail#installing-composer-dependencies-for-existing-projects)<br>
     
-   docker run --rm \
+   `docker run --rm \
     -u "$(id -u):$(id -g)" \
     -v "$(pwd):/var/www/html" \
     -w /var/www/html \
     laravelsail/php82-composer:latest \
-    composer install --ignore-platform-reqs
+    composer install --ignore-platform-reqs`
 
    
    one line: `docker run --rm -u "$(id -u):$(id -g)" -v "$(pwd):/var/www/html" -w /var/www/html laravelsail/php82-composer:latest composer install --ignore-platform-reqs`
