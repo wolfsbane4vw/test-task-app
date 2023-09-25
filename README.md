@@ -38,3 +38,6 @@ Database dump is in the file db-dump.sql in the root directory
     *P.S: the sail npm run dev command does not compile the frontend assets!!*
 9. access site on localhost
 
+## Teardown
+If you wish to only stop the containers run `sail stop`
+If you wish to stop the containers and remove them then run `sail down`
