@@ -16,8 +16,9 @@
     @if(count($child->children) > 0)
         <ol class="group-children">
             @foreach($child->children as $subChild)
-                <x-form-components.select-sectors-child :child="$subChild"
-                                                        :checkedSectors="!empty($checkedSectors) ? $checkedSectors : []"/>
+                <x-form-components.select-sectors-child
+                    :child="$subChild"
+                    :checkedSectors="!empty($checkedSectors) ? $checkedSectors : []"/>
             @endforeach
         </ol>
     @endif

@@ -5,13 +5,19 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserSectorRequest;
 use App\Models\UsersDetail;
 use App\Models\UsersSector;
+use Exception;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class UserSectorController extends Controller
 {
-
-    //TODO:: add validation
-    public function store(UserSectorRequest $request)
+    /**
+     * @param UserSectorRequest $request
+     * @return RedirectResponse
+     */
+    public function store(UserSectorRequest $request): RedirectResponse
     {
         $savedUsersDetails = $this->saveUsersDetails($request);
         $userId = $savedUsersDetails['id'];
@@ -25,9 +31,9 @@ class UserSectorController extends Controller
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
-    public function update(UserSectorRequest $request)
+    public function update(UserSectorRequest $request): RedirectResponse
     {
         //get user by session id
         $usersDetails = UsersDetail::query()
@@ -35,8 +41,7 @@ class UserSectorController extends Controller
             ->first();
 
         if (empty($usersDetails)) {
-            throw new \Exception('User not found');
-            //return redirect()->back();
+            throw new Exception('User not found');
         }
 
         $usersDetails->update(
@@ -60,9 +65,9 @@ class UserSectorController extends Controller
 
     /**
      * @param Request $request
-     * @return \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
+     * @return Builder|Model
      */
-    public function saveUsersDetails(Request $request): \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model
+    public function saveUsersDetails(Request $request): Builder|Model
     {
         $usersDetailData = $this->buildUsersDetailsSaveData($request);
 
