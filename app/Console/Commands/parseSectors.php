@@ -46,7 +46,7 @@ class parseSectors extends Command
         $htmlContent = File::get($filePath);
 
         $dom = new DOMDocument();
-        $dom->loadHTML($htmlContent);
+        $dom->loadHTML('<?xml encoding="utf-8"?>' . $htmlContent);
 
         $xpath = new DOMXPath($dom);
         $selectNode = $xpath->query('//select[@multiple]')->item(0);
