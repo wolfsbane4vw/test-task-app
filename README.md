@@ -7,18 +7,9 @@ Laravel sail needed a linux distro to be defined in Docker Desktop for windows. 
 
 ##  Setup:
 ---
-1. to install sail(and other dependencies) in the project
-   `docker run --rm \
-    -u "$(id -u):$(id -g)" \
-    -v "$(pwd):/var/www/html" \
-    -w /var/www/html \
-    laravelsail/php82-composer:latest \
-    composer install --ignore-platform-reqs`
-
-   as oneliner: `docker run --rm -u "$(id -u):$(id -g)" -v "$(pwd):/var/www/html" -w /var/www/html laravelsail/php82-composer:latest composer install --ignore-platform-reqs`
+1. to install sail(and other dependencies) in the project `docker run --rm -u "$(id -u):$(id -g)" -v "$(pwd):/var/www/html" -w /var/www/html laravelsail/php82-composer:latest composer install --ignore-platform-reqs`
 2. `sail up -d`
-   * P.S: if sail up -d does not work it is possible to run it as `./vendor/bin/sail up -d`*
-   *or add an aliase with the command `alias sail='bash ./vendor/bin/sail'`*
+   P.S: if sail up -d does not work it is possible to run it as `./vendor/bin/sail up -d` or add an aliase with the command `alias sail='bash ./vendor/bin/sail'`
 3. `sail npm install`
 ---
    
